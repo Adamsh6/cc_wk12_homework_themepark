@@ -22,6 +22,7 @@ public class ThemeParkTest {
     IceCreamStall iceCreamStall;
     TobaccoStall tobaccoStall;
     Visitor visitor;
+    Visitor child;
 
     @Before
     public void setUp(){
@@ -47,6 +48,7 @@ public class ThemeParkTest {
         themePark = new ThemePark(attractions, stalls);
 
         visitor = new Visitor(20, 2.5, 200);
+        child = new Visitor(10, 1.5, 600);
     }
 
     @Test
@@ -58,8 +60,31 @@ public class ThemeParkTest {
     }
 
     @Test
-    public void VisitorCanVisitAttraction(){
-        themePark.visit(visitor, Park)
+    public void visitorCanVisitAttraction(){
+        themePark.visit(visitor, rollerCoaster);
+        assertEquals(1, rollerCoaster.getVisitCount());
+        assertEquals(1, visitor.getVisitedAttractionsAmount());
     }
+
+    @Test
+    public void canGetReviewHash(){
+        assertEquals(7, themePark.allReviewsHash().size());
+    }
+
+    @Test
+    public void canGetAllSecurity(){
+        assertEquals(3, themePark.getAllSecurity().size());
+    }
+
+    @Test
+    public void tall20YOVisitorCanVisitTwoSecureAttractions(){
+        assertEquals(2, themePark.getAllowedFor(visitor).size());
+    }
+
+    @Test
+    public void youngVisitorCanVisitOneSecureAttraction(){
+        assertEquals(1, themePark.getAllowedFor(child).size());
+    }
+
 
 }
