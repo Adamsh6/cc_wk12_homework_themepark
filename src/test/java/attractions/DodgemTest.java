@@ -16,7 +16,7 @@ public class DodgemTest {
     public void setUp() throws Exception {
         dodgems = new Dodgems("Bumper Cars", 5);
         child = new Visitor(12, 1.5, 30);
-        teenager = new Visitor(13, 1.3, 40);
+        teenager = new Visitor(11, 1.3, 40);
     }
 
 
@@ -36,16 +36,16 @@ public class DodgemTest {
     }
 
     public void canGetDefaultPrice(){
-        assertEquals(8.40, dodgems.defaultPrice(), 0);
+        assertEquals(4.5, dodgems.defaultPrice(), 0);
     }
 
     @Test
     public void chargesDoubleForOver2m(){
-        assertEquals(16.8, dodgems.priceFor(teenager), 0);
+        assertEquals(2.25, dodgems.priceFor(teenager), 0);
     }
 
     @Test
     public void chargesDefaultForUnder2m(){
-        assertEquals(8.4, dodgems.priceFor(child), 0);
+        assertEquals(4.5, dodgems.priceFor(child), 0);
     }
 }
